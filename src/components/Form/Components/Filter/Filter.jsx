@@ -1,5 +1,4 @@
 import style from "./Filter.module.scss";
-import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 
 const Filter = ({handleFilter, filter})=>{
