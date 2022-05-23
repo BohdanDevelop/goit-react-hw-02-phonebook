@@ -1,17 +1,12 @@
-
-import Section from "./Section";
-import Form from "./Form"
-
+import Section from './Section';
+import PhoneBook from './PhoneBook';
 
 export const App = () => {
   return (
     <div>
-     
-<Section>
-  <Form/>
-  
-
-</Section>
+      <Section>
+        <PhoneBook />
+      </Section>
     </div>
   );
 };
