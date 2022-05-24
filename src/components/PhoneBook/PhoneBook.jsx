@@ -2,7 +2,7 @@ import { Component } from 'react';
 import Contacts from './Components/Contacts';
 import ContactsForm from './Components/ContactsForm';
 import Filter from './Components/Filter';
-import style from './PhoneBook.module.scss';
+
 import { nanoid } from 'nanoid';
 
 class PhoneBook extends Component {
