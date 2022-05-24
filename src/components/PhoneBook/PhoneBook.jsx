@@ -33,7 +33,7 @@ class PhoneBook extends Component {
           {
             name,
             number,
-            id: `id-${prevState.contacts.length + 1}`,
+            id: `id-${nanoid()}`,
           },
         ];
         return {
@@ -48,43 +48,32 @@ class PhoneBook extends Component {
   onDeleteClick = evt => {
     if (evt.target.type === 'button') {
       const deleteName = evt.target.name.toLowerCase();
-      const newContacts = this.state.contacts.filter(
-        element => element.name.toLowerCase() !== deleteName
-      );
-      this.setState({
-        contacts: newContacts,
+
+      this.setState(prevState => {
+        const newContacts = prevState.contacts.filter(
+          element => element.name.toLowerCase() !== deleteName
+        );
+
+        return {
+          contacts: newContacts,
+        };
       });
     }
   };
   render() {
     const { contacts, filter } = this.state;
+    const filteredContacts = contacts.filter(({ name }) =>
+      name.toUpperCase().includes(filter.toUpperCase().trim())
+    );
 
-    const filterContacts = contacts
-      .filter(({ name }) =>
-        name.toUpperCase().includes(filter.toUpperCase().trim())
-      )
-      .map(({ name, number }) => {
-        return (
-          <li className={style.li} onClick={this.onDeleteClick} key={nanoid()}>
-            <div>
-              {name} : {number}
-            </div>
-            <button className={style.button} name={name} type="button">
-              Delete
-            </button>
-          </li>
-        );
-      });
+    const passedContacts = filter ? filteredContacts : contacts;
 
     return (
       <>
         <ContactsForm handleSubmit={this.handleSubmit} />
         <Filter filter={filter} handleFilter={this.handleFilter} />
-        {filter ? (
-          <ul>{filterContacts}</ul>
-        ) : (
-          <Contacts names={contacts} onClick={this.onDeleteClick} />
-        )}
+
+        <Contacts names={passedContacts} onClick={this.onDeleteClick} />
       </>
     );
   }
