@@ -22,7 +22,7 @@ class PhoneBook extends Component {
     this.setState({ filter: value });
   };
 
-  handleSubmit = (evt, name, number, reset) => {
+  handleSubmit = (name, number) => {
     const allTheName = this.state.contacts.map(elem => elem.name.toUpperCase());
     if (allTheName.includes(name.toUpperCase())) {
       alert(`${name} is already in contacts`);
@@ -41,8 +41,6 @@ class PhoneBook extends Component {
         };
       });
     }
-
-    reset();
   };
 
   onDeleteClick = evt => {

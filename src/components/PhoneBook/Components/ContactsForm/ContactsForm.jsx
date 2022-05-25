@@ -26,11 +26,11 @@ class ContactsForm extends Component {
         onSubmit={evt => {
           evt.preventDefault();
           this.props.handleSubmit(
-            evt,
             this.state.name,
             this.state.number,
-            this.reset
+            
           );
+          this.reset()
         }}
       >
         <div className={style.inputDiv}>
